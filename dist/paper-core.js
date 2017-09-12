@@ -9919,7 +9919,7 @@ PathItem.inject(new function() {
 		return createResult(paths, true, path1, path2, options);
 	}
 
-	function splitBoolean(path1, path2, operation) {
+	function splitBoolean(path1, path2, operation, options) {
 		var _path1 = preparePath(path1),
 			_path2 = preparePath(path2),
 			crossings = _path1.getCrossings(_path2),
@@ -9946,7 +9946,7 @@ PathItem.inject(new function() {
 			}
 		}
 		addPath(_path1);
-		return createResult(paths, false, path1, path2);
+		return createResult(paths, false, path1, path2, options);
 	}
 
 	function linkIntersections(from, to) {
@@ -10505,7 +10505,7 @@ PathItem.inject(new function() {
 
 		divide: function(path, options) {
 			return options && (options.trace == false || options.stroke)
-					? splitBoolean(this, path, 'divide')
+					? splitBoolean(this, path, 'divide', options)
 					: createResult([
 						this.subtract(path, options),
 						this.intersect(path, options)
